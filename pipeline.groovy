@@ -1,18 +1,19 @@
-def account = 'tyler-matheson'
-def url = new URL("https://api.github.com/users/${account}/repos")
-def repos = new groovy.json.JsonSlurper().parse(url.newReader())
-repos.each {
-    def buildName = it.name
-    def jobName = "${account}_${buildName}".replaceAll('/','-')
+def project = 'tyler-matheson/builds'
+def branchApi = new URL("https://api.github.com/repos/${project}/branches")
+def branches = new groovy.json.JsonSlurper().parse(branchApi.newReader())
+branches.each {
+    def branchName = it.name
+    def jobName = "${project}_${buildName}".replaceAll('/','-')
 
-    def url2 = new URL("https://api.github.com/repos/${account}/${buildName}/contents/")
+    def url2 = new URL("https://api.github.com/repos/${project}/contents/")
     def content = new groovy.json.JsonSlurper().parse(url2.newReader())
     content.each {
-        if (it.name == "Jenkinsfile")
-        multibranchPipelineJob('jobName') {
-            branchSources {
-                git {
-                    remote("https://github.com/${account}/${buildName}.git")
+        if (it.name == "Jenkinsfile"){
+            multibranchPipelineJob('jobName') {
+                branchSources {
+                    git {
+                        git("git://github.com/${project}.git", branchName)
+                    }
                 }
             }
         }

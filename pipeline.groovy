@@ -9,7 +9,7 @@ branches.each {
     def content = new groovy.json.JsonSlurper().parse(url2.newReader())
     content.each {
         if (it.name == "Jenkinsfile"){
-            multibranchPipelineJob('jobName') {
+            multibranchPipelineJob("${jobName}") {
                 branchSources {
                     git {
                         git("git://github.com/${project}.git", branchName)

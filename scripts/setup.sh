@@ -1,14 +1,19 @@
 #!/bin/bash
 
 yes | sudo yum update
+yes | sudo yum install awslogs
+
+sudo service awslogs start
 
 git clone https://github.com/aws/aws-fpga.git $AWS_FPGA_REPO_DIR  
+git clone https://github.com/tyler-matheson/jenkins-core.git $CODE_CHANGES
+
 cd $AWS_FPGA_REPO_DIR  
 
 source hdk_setup.sh
 source sdk_setup.sh
 
-cd $HDK_DIR/cl/examples/cl_uram_example
+cd $HDK_DIR/cl/examples/cl_hello_world
 export CL_DIR=$(pwd)
 
 cd $CL_DIR/build/scripts

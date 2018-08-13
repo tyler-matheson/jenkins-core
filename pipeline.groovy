@@ -1,4 +1,4 @@
-def project = 'tyler-matheson/builds'
+def project = 'tyler-matheson/jenkins-core'
 
 multibranchPipelineJob("Project-builds") {
     branchSources {

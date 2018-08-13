@@ -1,7 +1,6 @@
 def project = 'tyler-matheson/builds'
-def jobName = "${project}".replaceAll('/','_')
 
-multibranchPipelineJob("${jobName}") {
+multibranchPipelineJob("Project-builds") {
     branchSources {
         git {
             remote "git://github.com/${project}.git"

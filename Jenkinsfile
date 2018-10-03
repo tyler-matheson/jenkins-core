@@ -7,7 +7,7 @@ pipeline {
                 echo "Preparing Environment..."
 
                 // Clear the workspace
-                deleteDir()
+                //deleteDir()
                 checkout scm
             }
         }

@@ -23,4 +23,6 @@ LAUNCH=$(aws ec2 run-instances --image-id ami-f7ba3988 \
 
 INSTANCE=$(echo "$LAUNCH" | awk '/^INSTANCE/ {print $2}')
 
+echo Waiting for $INSTANCE to terminate...
+
 aws ec2 wait instance-terminated --instance-ids $INSTANCE

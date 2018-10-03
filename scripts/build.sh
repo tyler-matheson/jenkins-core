@@ -21,7 +21,8 @@ LAUNCH=$(aws ec2 run-instances --image-id ami-f7ba3988 \
 --instance-initiated-shutdown-behavior terminate \
 --user-data file://scripts/setup.sh)
 
-INSTANCE=$(echo "$LAUNCH" | awk '/^INSTANCE/ {print $2}')
+# Get instance id using inline python JSON parser command
+INSTANCE=$(echo $LAUNCH | python -c 'import sys, json; print json.load(sys.stdin)["Instances"][0]["InstanceId"]')
 
 echo Waiting for $INSTANCE to terminate...
 

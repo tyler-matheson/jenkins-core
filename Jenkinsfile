@@ -12,8 +12,6 @@ pipeline {
                 // DEBUG: view environment variables
                 //sh 'env | sort'
 
-                checkout scm
-
                 echo "Running Build Script..."
                 sh '/bin/bash scripts/build.sh'
                 

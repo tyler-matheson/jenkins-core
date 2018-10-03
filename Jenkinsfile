@@ -2,13 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Preparation'){
+            echo "Preparing Environment..."
+
+            // Clear the workspace
+            deleteDir()
+            checkout scm
+
+        }
+        
         stage('Build') {
             steps { // Restricted agent for r10k
                 echo "Starting Build stage..."
 
-                // Clear the workspace
-                deleteDir()
-                
                 // DEBUG: view environment variables
                 //sh 'env | sort'
 
@@ -29,8 +35,6 @@ pipeline {
 
                 // DEBUG: view environment variables
                 //sh 'env | sort'
-
-                checkout scm
 
                 sh '/bin/bash scripts/deploy.sh'
             

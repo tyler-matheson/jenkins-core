@@ -14,6 +14,7 @@ pipeline {
 
                 checkout scm
 
+                echo "Running Build Script..."
                 sh '/bin/bash scripts/build.sh'
                 
                 echo "End of Build stage."

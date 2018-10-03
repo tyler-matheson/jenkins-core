@@ -14,7 +14,7 @@ export AWS_DEFAULT_REGION=us-east-1
 
 #Run instance or Create Cloudformation stack
 
-LAUNCH=$(aws ec2 run-instances --image-id ami-ede6318f \
+LAUNCH=$(aws ec2 run-instances --image-id ami-f7ba3988 \
 --count 1 \
 --instance-type m4.2xlarge \
 --key-name fpga-dev-us-1 \

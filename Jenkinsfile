@@ -3,14 +3,15 @@ pipeline {
 
     stages {
         stage('Preparation'){
-            echo "Preparing Environment..."
+            steps {
+                echo "Preparing Environment..."
 
-            // Clear the workspace
-            deleteDir()
-            checkout scm
-
+                // Clear the workspace
+                deleteDir()
+                checkout scm
+            }
         }
-        
+
         stage('Build') {
             steps { // Restricted agent for r10k
                 echo "Starting Build stage..."

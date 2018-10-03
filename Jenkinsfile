@@ -10,7 +10,7 @@ pipeline {
                 deleteDir()
                 
                 // DEBUG: view environment variables
-                sh 'env | sort'
+                //sh 'env | sort'
 
                 checkout scm
 
@@ -29,7 +29,7 @@ pipeline {
                 deleteDir()
 
                 // DEBUG: view environment variables
-                sh 'env | sort'
+                //sh 'env | sort'
 
                 checkout scm
 

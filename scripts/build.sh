@@ -24,7 +24,8 @@ LAUNCH=$(aws ec2 run-instances --image-id ami-f7ba3988 \
 # Get instance id using inline python JSON parser command
 INSTANCE=$(echo $LAUNCH | python -c 'import sys, json; print json.load(sys.stdin)["Instances"][0]["InstanceId"]')
 
-echo Waiting for $INSTANCE to terminate...
+echo Waiting for $INSTANCE to run...
+aws ec2 wait instance-exists --instance-ids $INSTANCE
 
-aws ec2 wait instance-running --instance-ids i-0dd5f3fcb12479c1a
-aws ec2 wait instance-terminated --instance-ids i-0dd5f3fcb12479c1a
+echo Waiting for $INSTANCE to terminate...
+aws ec2 wait instance-terminated --instance-ids $INSTANCE

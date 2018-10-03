@@ -3,7 +3,7 @@ def project = 'tyler-matheson/jenkins-core'
 multibranchPipelineJob("Project-builds") {
     branchSources {
         git {
-            remote "git://github.com/${project}.git"
+            remote "https://github.com/${project}.git"
         }
     }
     configure { node ->

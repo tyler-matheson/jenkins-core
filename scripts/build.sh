@@ -26,4 +26,4 @@ INSTANCE=$(echo $LAUNCH | python -c 'import sys, json; print json.load(sys.stdin
 
 echo Waiting for $INSTANCE to terminate...
 
-aws ec2 wait instance-terminated --instance-ids $INSTANCE
+aws ec2 wait instance-terminated --filters Name=instance-id,Values=$INSTANCE 
